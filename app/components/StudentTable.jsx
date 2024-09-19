@@ -21,35 +21,98 @@ function StudentTable() {
         getAllStudents()
     }, [])
 
+    const styles = {
+        container: {
+          width: '100%',
+          maxWidth: '600px',
+          margin: 'auto',
+          padding: '20px',
+          backgroundColor: '#f9f9f9',
+          borderRadius: '10px',
+          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+        },
+        heading: {
+          textAlign: 'center',
+          marginBottom: '20px',
+          color: '#333',
+        },
+        reloadButton: {
+          display: 'block',
+          padding: '10px 15px',
+          margin: '0 auto 20px auto',
+          backgroundColor: '#007BFF',
+          color: '#fff',
+          border: 'none',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          fontSize: '16px',
+          transition: 'background-color 0.3s',
+        },
+        reloadButtonHover: {
+          backgroundColor: '#0056b3',
+        },
+        tableContainer: {
+          overflowX: 'auto',
+        },
+        table: {
+          width: '100%',
+          borderCollapse: 'collapse',
+          textAlign: 'left',
+          backgroundColor: '#fff',
+          borderRadius: '10px',
+          overflow: 'hidden',
+          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+        },
+        tableHeader: {
+          padding: '12px 15px',
+          backgroundColor: '#007BFF',
+          color: '#fff',
+          fontWeight: 'bold',
+          borderBottom: '2px solid #ddd',
+        },
+        tableRow: {
+          '&:nth-child(even)': {
+            backgroundColor: '#f2f2f2',
+          },
+        },
+        tableCell: {
+          padding: '12px 15px',
+          borderBottom: '1px solid #ddd',
+        },
+    };
+      
     return (
-        <div>
-            <h2>Students Table</h2>
-            <button onClick = {getAllStudents}>
-                Reload
+        <div style={styles.container}>
+            <h2 style={styles.heading}>To-Do List</h2>
+
+            {/* Reload Button */}
+            <button style={styles.reloadButton} onClick={getAllStudents}>
+                Reload Tasks
             </button>
-            <br/>
-            <br/>
-            <table className={classes.table}>
-                <tbody >
-                <tr className = {classes.row}>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Class Year</th>
-                    <th>Concentrations</th>
-                </tr>
-            {
-                students.map((student) => 
-                    <tr key={student.id} className={classes.row}>
-                        <td>{student.firstName}</td>
-                        <td>{student.lastName}</td>
-                        <td>{student.classYear}</td>
-                        <td>{student.concentrations.join(", ")}</td>
+
+            {/* Table for displaying tasks */}
+            <div style={styles.tableContainer}>
+                <table style={styles.table}>
+                <thead>
+                    <tr>
+                    <th style={styles.tableHeader}>Task</th>
+                    <th style={styles.tableHeader}>Deadline</th>
                     </tr>
-                )
-            }
+                </thead>
+                <tbody>
+                    {students.map((student) => (
+                    <tr key={student.id} style={styles.tableRow}>
+                        <td style={styles.tableCell}>{student.firstName}</td>
+                        <td style={styles.tableCell}>{student.lastName}</td>
+                        <td style={styles.tableCell}>{student.classYear}</td>
+                        <td style={styles.tableCell}>{student.concentrations.join(", ")}</td>
+                    </tr>
+                    ))}
                 </tbody>
-            </table>
+                </table>
+            </div>
         </div>
+
     )
 }
 export default StudentTable;
