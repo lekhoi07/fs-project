@@ -84,13 +84,9 @@ function StudentTable() {
     return (
         <div style={styles.container}>
             <h2 style={styles.heading}>To-Do List</h2>
-
-            {/* Reload Button */}
             <button style={styles.reloadButton} onClick={getAllStudents}>
                 Reload Tasks
             </button>
-
-            {/* Table for displaying tasks */}
             <div style={styles.tableContainer}>
                 <table style={styles.table}>
                 <thead>
